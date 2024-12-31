@@ -50,7 +50,7 @@ document.getElementById('profile-form').addEventListener('submit', async functio
     const response = await fetch('https://api.github.com/repos/sourovps/foodresearchers.github.io/dispatches', {
       method: 'POST',
       headers: {
-        'Authorization': 'token YOUR_GITHUB_TOKEN',
+        'Authorization': 'token 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',
         'Accept': 'application/vnd.github.everest-preview+json'
       },
       body: JSON.stringify({
