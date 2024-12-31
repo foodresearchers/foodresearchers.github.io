@@ -1,0 +1,26 @@
+name: Add Input
+
+on:
+  repository_dispatch:
+    types: [add-input]
+
+jobs:
+  add_input:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+
+    - name: Add input to repository
+      run: |
+        mkdir -p data images
+        echo "Name: ${{ github.event.client_payload.name }}" > data/${{ github.event.client_payload.studentId }}.txt
+        echo "Student ID: ${{ github.event.client_payload.studentId }}" >> data/${{ github.event.client_payload.studentId }}.txt
+        echo "Batch: ${{ github.event.client_payload.batch }}" >> data/${{ github.event.client_payload.studentId }}.txt
+        echo "Research Interests: ${{ github.event.client_payload.interests }}" >> data/${{ github.event.client_payload.studentId }}.txt
+        echo "${{ github.event.client_payload.imageContent }}" | base64 -d > images/${{ github.event.client_payload.imageName }}
+        git config --global user.name 'github-actions'
+        git config --global user.email 'github-actions@github.com'
+        git add data/*.txt images/*.png
+        git commit -m 'Add new input and image'
+        git push
