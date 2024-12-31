@@ -21,17 +21,9 @@ document.getElementById('profile-form').addEventListener('submit', async functio
   const interests = document.getElementById('profile-interests').value;
   const image = document.getElementById('profile-image').files[0];
 
-  // Check for duplicates
-  const existingCard = document.querySelector(`.student-card[data-id="${studentId}"]`);
-  if (existingCard) {
-    alert('Student ID already exists!');
-    return;
-  }
-
   // Create a student card
   const studentCard = document.createElement('div');
   studentCard.className = 'student-card';
-  studentCard.setAttribute('data-id', studentId);
   
   const imgElement = document.createElement('img');
   imgElement.src = URL.createObjectURL(image);
@@ -55,10 +47,10 @@ document.getElementById('profile-form').addEventListener('submit', async functio
     const base64Image = reader.result.split(',')[1];
 
     // Send input to GitHub Actions
+    console.log("Sending API request to GitHub...");
     const response = await fetch('https://api.github.com/repos/sourovps/foodresearchers.github.io/dispatches', {
       method: 'POST',
       headers: {
-        'Authorization': 'token YOUR_GITHUB_TOKEN',  // Replace this with your actual GitHub PAT
         'Accept': 'application/vnd.github.everest-preview+json'
       },
       body: JSON.stringify({
@@ -75,7 +67,7 @@ document.getElementById('profile-form').addEventListener('submit', async functio
     });
 
     const result = await response.json();
-    console.log(result);
+    console.log("GitHub API response:", result);
   };
   reader.readAsDataURL(image);
 
