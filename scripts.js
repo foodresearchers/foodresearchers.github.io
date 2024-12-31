@@ -12,7 +12,7 @@ document.getElementById('login-form').addEventListener('submit', function(event)
   }
 });
 
-document.getElementById('profile-form').addEventListener('submit', function(event) {
+document.getElementById('profile-form').addEventListener('submit', async function(event) {
   event.preventDefault();
   
   const name = document.getElementById('profile-name').value;
@@ -40,6 +40,36 @@ document.getElementById('profile-form').addEventListener('submit', function(even
   studentCard.appendChild(cardContent);
   
   document.getElementById('student-cards').appendChild(studentCard);
+
+  // Convert image to Base64 for upload
+  const reader = new FileReader();
+  reader.onloadend = async function() {
+    const base64Image = reader.result.split(',')[1];
+
+    // Send input to GitHub Actions
+    const response = await fetch('https://api.github.com/repos/sourovps/foodresearchers.github.io/dispatches', {
+      method: 'POST',
+      headers: {
+        'Authorization': 'token YOUR_GITHUB_TOKEN',
+        'Accept': 'application/vnd.github.everest-preview+json'
+      },
+      body: JSON.stringify({
+        event_type: 'add-input',
+        client_payload: {
+          name: name,
+          studentId: studentId,
+          batch: batch,
+          interests: interests,
+          imageName: `${studentId}.png`,
+          imageContent: base64Image
+        }
+      })
+    });
+
+    const result = await response.json();
+    console.log(result);
+  };
+  reader.readAsDataURL(image);
 
   // Reset form
   document.getElementById('profile-form').reset();
