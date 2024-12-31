@@ -33,4 +33,38 @@
       <h2>Student Profile</h2>
       <form id="profile-form">
         <label for="profile-name">Name:</label>
-        <input type
+        <input type="text" id="profile-name" name="profile-name" required>
+        <label for="profile-id">Student ID:</label>
+        <input type="text" id="profile-id" name="profile-id" required>
+        <label for="profile-batch">Batch:</label>
+        <input type="text" id="profile-batch" name="profile-batch" required>
+        <label for="profile-interests">Research Interests:</label>
+        <input type="text" id="profile-interests" name="profile-interests" required>
+        <label for="profile-image">Upload Image:</label>
+        <input type="file" id="profile-image" name="profile-image" accept="image/*" required>
+        <button type="submit">Submit</button>
+      </form>
+      <div id="student-cards"></div>
+    </div>
+  </section>
+  <footer>
+    <p>&copy; 2024 Research Group. All rights reserved.</p>
+  </footer>
+  <section id="real-time-input">
+    <h2>Submit Your Research Info</h2>
+    <form id="real-time-input-form">
+      <label for="profile-name">Name:</label>
+      <input type="text" id="profile-name" name="profile-name" required>
+      <label for="profile-id">Student ID:</label>
+      <input type="text" id="profile-id" name="profile-id" required>
+      <label for="profile-batch">Batch:</label>
+      <input type="text" id="profile-batch" name="profile-batch" required>
+      <label for="profile-interests">Research Interests:</label>
+      <input type="text" id="profile-interests" name="profile-interests" required>
+      <button type="submit">Submit</button>
+    </form>
+    <div id="student-cards"></div>
+  </section>
+  <script src="scripts.js"></script>
+</body>
+</html>
