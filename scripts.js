@@ -47,27 +47,31 @@ document.getElementById('profile-form').addEventListener('submit', async functio
     const base64Image = reader.result.split(',')[1];
 
     // Send input to GitHub Actions
-    console.log("Sending API request to GitHub...");
-    const response = await fetch('https://api.github.com/repos/sourovps/foodresearchers.github.io/dispatches', {
-      method: 'POST',
-      headers: {
-        'Accept': 'application/vnd.github.everest-preview+json'
-      },
-      body: JSON.stringify({
-        event_type: 'add-input',
-        client_payload: {
-          name: name,
-          studentId: studentId,
-          batch: batch,
-          interests: interests,
-          imageName: `${studentId}.png`,
-          imageContent: base64Image
-        }
-      })
-    });
+    console.log("Preparing to send API request to GitHub...");
+    try {
+      const response = await fetch('https://api.github.com/repos/sourovps/foodresearchers.github.io/dispatches', {
+        method: 'POST',
+        headers: {
+          'Accept': 'application/vnd.github.everest-preview+json'
+        },
+        body: JSON.stringify({
+          event_type: 'add-input',
+          client_payload: {
+            name: name,
+            studentId: studentId,
+            batch: batch,
+            interests: interests,
+            imageName: `${studentId}.png`,
+            imageContent: base64Image
+          }
+        })
+      });
 
-    const result = await response.json();
-    console.log("GitHub API response:", result);
+      const result = await response.json();
+      console.log("GitHub API response:", result);
+    } catch (error) {
+      console.error("Failed to send API request:", error);
+    }
   };
   reader.readAsDataURL(image);
 
