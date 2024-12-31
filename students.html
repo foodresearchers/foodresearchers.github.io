@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Student Info - Research Group Website</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header>
+    <h1>Student Information</h1>
+    <nav>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About Us</a></li>
+        <li><a href="researchers.html">Researchers</a></li>
+        <li><a href="students.html">Student Info</a></li>
+        <li><a href="publications.html">Publications</a></li>
+        <li><a href="projects.html">Current Projects</a></li>
+      </ul>
+    </nav>
+  </header>
+  <section id="students">
+    <h2>Student Information</h2>
+    <form id="login-form">
+      <label for="student-id">Student ID:</label>
+      <input type="text" id="student-id" name="student-id" value="1807052" required>
+      <label for="password">Password:</label>
+      <input type="password" id="password" name="password" value="1807052" required>
+      <button type="submit">Login</button>
+    </form>
+    <div id="student-profile" style="display: none;">
+      <h2>Student Profile</h2>
+      <form id="profile-form">
+        <label for="profile-name">Name:</label>
+        <input type="text" id="profile-name" name="profile-name" required>
+        <label for="profile-id">Student ID:</label>
+        <input type="text" id="profile-id" name="profile-id" required>
+        <label for="profile-batch">Batch:</label>
+        <input type="text" id="profile-batch" name="profile-batch" required>
+        <label for="profile-interests">Research Interests:</label>
+        <input type="text" id="profile-interests" name="profile-interests" required>
+        <label for="profile-image">Upload Image:</label>
+        <input type="file" id="profile-image" name="profile-image" accept="image/*" required>
+        <button type="submit">Submit</button>
+      </form>
+      <div id="student-cards"></div>
+    </div>
+  </section>
+  <footer>
+    <p>&copy; 2024 Research Group. All rights reserved.</p>
+  </footer>
+  <script src="scripts.js"></script>
+</body>
+</html>
